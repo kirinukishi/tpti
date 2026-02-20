@@ -96,38 +96,48 @@ export default function Home() {
                   {q.text}
                 </p>
 
-                {/* 5-point scale */}
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <span className="text-xs text-gray-400 shrink-0 w-12 text-right">
-                    思わない
+                {/* 7-point scale: そう思う(green) ← → そう思わない(purple) */}
+                <div className="flex items-center justify-center gap-3 sm:gap-4">
+                  <span className="text-xs font-bold shrink-0" style={{ color: "#10b981" }}>
+                    そう思う
                   </span>
-                  <div className="flex items-center justify-between flex-1 max-w-[240px]">
-                    {[1, 2, 3, 4, 5].map((value) => {
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    {[7, 6, 5, 4, 3, 2, 1].map((value) => {
                       const isSelected = answers[q.id] === value;
                       // サイズ: 両端大きく、中間小さく
-                      const sizeClass =
-                        value === 1 || value === 5
-                          ? "w-8 h-8 sm:w-9 sm:h-9"
-                          : value === 2 || value === 4
-                            ? "w-7 h-7 sm:w-8 sm:h-8"
-                            : "w-6 h-6 sm:w-7 sm:h-7";
+                      const sizes = { 7: 40, 6: 34, 5: 28, 4: 22, 3: 28, 2: 34, 1: 40 };
+                      const smSizes = { 7: 44, 6: 38, 5: 32, 4: 26, 3: 32, 2: 38, 1: 44 };
+                      // 色: 緑(そう思う) → グレー → 紫(思わない)
+                      const colors: Record<number, { border: string; fill: string; hover: string }> = {
+                        7: { border: "#10b981", fill: "#10b981", hover: "#d1fae5" },
+                        6: { border: "#34d399", fill: "#34d399", hover: "#d1fae5" },
+                        5: { border: "#6ee7b7", fill: "#6ee7b7", hover: "#ecfdf5" },
+                        4: { border: "#d1d5db", fill: "#9ca3af", hover: "#f3f4f6" },
+                        3: { border: "#c4b5fd", fill: "#c4b5fd", hover: "#ede9fe" },
+                        2: { border: "#a78bfa", fill: "#a78bfa", hover: "#ede9fe" },
+                        1: { border: "#8b5cf6", fill: "#8b5cf6", hover: "#ede9fe" },
+                      };
+                      const c = colors[value];
 
                       return (
                         <button
                           key={value}
                           onClick={() => handleSelect(q.id, value)}
-                          className={`${sizeClass} rounded-full border-2 transition-all duration-150 flex-shrink-0 ${
-                            isSelected
-                              ? "bg-orange-500 border-orange-500 scale-110"
-                              : "border-gray-300 hover:border-orange-400 hover:bg-orange-50"
-                          }`}
+                          style={{
+                            width: sizes[value as keyof typeof sizes],
+                            height: sizes[value as keyof typeof sizes],
+                            borderColor: isSelected ? c.fill : c.border,
+                            backgroundColor: isSelected ? c.fill : "transparent",
+                            transform: isSelected ? "scale(1.15)" : "scale(1)",
+                          }}
+                          className="rounded-full border-[2.5px] transition-all duration-150 flex-shrink-0 hover:opacity-80"
                           aria-label={`${value}点`}
                         />
                       );
                     })}
                   </div>
-                  <span className="text-xs text-gray-400 shrink-0 w-12">
-                    そう思う
+                  <span className="text-xs font-bold shrink-0" style={{ color: "#8b5cf6" }}>
+                    思わない
                   </span>
                 </div>
               </div>
