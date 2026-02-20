@@ -105,6 +105,13 @@ export default function QuizPage() {
                       const isSelected = answers[q.id] === value;
                       const sizes: Record<number, number> = { 1: 44, 2: 38, 3: 32, 4: 38, 5: 44 };
                       const s = sizes[value];
+                      const selectedColors: Record<number, string> = {
+                        1: "#f472b6", // ピンク（思わない）
+                        2: "#f9a8d4", // 薄ピンク
+                        3: "#d1d5db", // グレー（中間）
+                        4: "#86efac", // 薄グリーン
+                        5: "#34d399", // グリーン（そう思う）
+                      };
 
                       return (
                         <button
@@ -113,10 +120,11 @@ export default function QuizPage() {
                           style={{
                             width: s,
                             height: s,
+                            backgroundColor: isSelected ? selectedColors[value] : undefined,
                           }}
                           className={`rounded-full transition-all duration-200 flex-shrink-0 ${
                             isSelected
-                              ? "bg-gray-700 shadow-md scale-110"
+                              ? "shadow-md scale-110"
                               : "bg-gray-200 hover:bg-gray-300"
                           }`}
                           aria-label={`${value}点`}
