@@ -60,7 +60,7 @@ export default function Home() {
             自分でも気づかなかった、最高に楽しむための「旅の方程式」を見つけましょう。
           </p>
           <p className="text-sm text-gray-400 mb-8">
-            28問 / 所要時間 約5分
+            28問 / 所要時間 約3分
           </p>
 
           {/* ティッピー */}
@@ -77,7 +77,7 @@ export default function Home() {
               href="/quiz"
               className="px-10 py-5 bg-gradient-to-r from-orange-500 to-rose-500 text-white text-lg font-bold rounded-2xl shadow-[0_10px_40px_-10px_rgba(244,63,94,0.4)] hover:scale-105 transition-transform duration-300"
             >
-              診断を開始する（無料・約5分）
+              診断を開始する（無料・約3分）
             </Link>
             <Link
               href="/types"
