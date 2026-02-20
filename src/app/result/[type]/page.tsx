@@ -259,7 +259,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
                 {/* 7. もう一度診断する & タイプ一覧 */}
                 <div className="flex flex-col items-center gap-4 pt-4 pb-8">
                     <Link
-                        href="/"
+                        href="/quiz"
                         className="w-full max-w-sm block py-4 text-center text-white rounded-2xl font-bold text-lg shadow-lg hover:opacity-90 transition-opacity"
                         style={{ backgroundColor: typeColor }}
                     >

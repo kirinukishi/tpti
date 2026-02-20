@@ -182,7 +182,7 @@ export default function TypesPage() {
             質問に答えて、自分の旅タイプを診断しよう
           </p>
           <Link
-            href="/"
+            href="/quiz"
             className="inline-block px-10 py-5 bg-gradient-to-r from-orange-500 to-rose-500 text-white text-lg font-bold rounded-2xl shadow-[0_10px_40px_-10px_rgba(244,63,94,0.4)] hover:scale-105 transition-transform duration-300"
           >
             診断を開始する
