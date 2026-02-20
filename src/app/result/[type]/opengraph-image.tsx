@@ -26,11 +26,6 @@ const colorMap: Record<string, string> = {
     "stone-400": "#a8a29e",
 };
 
-// ティッピー画像をモジュールレベルでキャッシュ
-const tippiImageData = fetch(
-    new URL("../../../../public/images/tippi.jpg", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 function arrayBufferToBase64(buffer: ArrayBuffer): string {
     const bytes = new Uint8Array(buffer);
     let binary = "";
@@ -38,6 +33,20 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
         binary += String.fromCharCode(bytes[i]);
     }
     return btoa(binary);
+}
+
+async function loadTippiImage(): Promise<string | null> {
+    try {
+        const baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "http://localhost:3000";
+        const res = await fetch(`${baseUrl}/images/tippi.jpg`);
+        if (!res.ok) return null;
+        const buffer = await res.arrayBuffer();
+        return `data:image/jpeg;base64,${arrayBufferToBase64(buffer)}`;
+    } catch {
+        return null;
+    }
 }
 
 async function loadGoogleFont(text: string): Promise<ArrayBuffer | null> {
@@ -95,12 +104,10 @@ export default async function Image({
     const allText = `TPTI${typeId}${typeData.name}${typeData.catchCopy}旅行タイプ性格診断`;
     const uniqueChars = [...new Set(allText)].join("");
 
-    const [tippiBuffer, fontData] = await Promise.all([
-        tippiImageData,
+    const [tippiSrc, fontData] = await Promise.all([
+        loadTippiImage(),
         loadGoogleFont(uniqueChars),
     ]);
-
-    const tippiSrc = `data:image/jpeg;base64,${arrayBufferToBase64(tippiBuffer)}`;
 
     const fontOptions = fontData
         ? [
@@ -191,14 +198,26 @@ export default async function Image({
                             flexShrink: 0,
                         }}
                     >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={tippiSrc}
-                            width={280}
-                            height={280}
-                            alt=""
-                            style={{ borderRadius: 40, objectFit: "cover" }}
-                        />
+                        {tippiSrc ? (
+                            /* eslint-disable-next-line @next/next/no-img-element */
+                            <img
+                                src={tippiSrc}
+                                width={280}
+                                height={280}
+                                alt=""
+                                style={{ borderRadius: 40, objectFit: "cover" }}
+                            />
+                        ) : (
+                            <div
+                                style={{
+                                    width: 200,
+                                    height: 200,
+                                    borderRadius: "50%",
+                                    backgroundColor: typeColor,
+                                    opacity: 0.3,
+                                }}
+                            />
+                        )}
                     </div>
 
                     {/* 右: テキスト情報 */}
