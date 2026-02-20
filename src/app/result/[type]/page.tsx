@@ -30,11 +30,6 @@ export default async function ResultPage({ params }: ResultPageProps) {
                 style={{ backgroundColor: getTypeColorWithOpacity(typeData.color, 0.08) }}
             >
                 <div className="container mx-auto px-4 text-center relative z-10">
-                    {/* シェアボタン（上部） */}
-                    <div className="flex justify-center mb-8">
-                        <ShareButtons typeId={typeId} typeName={typeData.name} catchCopy={typeData.catchCopy} />
-                    </div>
-
                     <div
                         className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider bg-white/80 backdrop-blur-sm rounded-full"
                         style={{ color: typeColor }}
@@ -56,7 +51,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </p>
 
                     <p className="text-xl sm:text-2xl font-bold text-gray-700 mb-10">
-                        「{typeData.catchCopy}」
+                        {typeData.catchCopy}
                     </p>
 
                     {/* キャラクタープレースホルダー */}
@@ -69,8 +64,19 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </div>
 
                     {/* 4軸バッジ */}
-                    <div className="flex justify-center mb-6">
+                    <div className="flex justify-center mb-8">
                         <AxisBadge typeId={typeId} />
+                    </div>
+
+                    {/* シェアセクション（軸バッジ直下 = シェア率最大） */}
+                    <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto">
+                        <div className="flex justify-center mb-4">
+                            <ShareButtons typeId={typeId} typeName={typeData.name} catchCopy={typeData.catchCopy} />
+                        </div>
+                        <div className="bg-white/80 rounded-xl p-3 text-left">
+                            <p className="text-xs text-gray-400 font-bold mb-1">シェアテキスト</p>
+                            <p className="text-sm text-gray-600 whitespace-pre-line leading-relaxed">{shareText}</p>
+                        </div>
                     </div>
                 </div>
 
