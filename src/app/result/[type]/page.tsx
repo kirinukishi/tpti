@@ -24,6 +24,24 @@ export default async function ResultPage({ params }: ResultPageProps) {
 
     return (
         <div className="min-h-screen bg-[#fafafa] pb-20">
+            {/* ヘッダー */}
+            <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+                <div className="container mx-auto px-4 py-3 flex items-center justify-between max-w-3xl">
+                    <Link
+                        href="/"
+                        className="text-lg font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500"
+                    >
+                        TPTI
+                    </Link>
+                    <Link
+                        href="/quiz"
+                        className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+                    >
+                        もう一度診断する
+                    </Link>
+                </div>
+            </header>
+
             {/* 1. ヒーローセクション */}
             <section
                 className="pt-20 pb-16 relative overflow-hidden"

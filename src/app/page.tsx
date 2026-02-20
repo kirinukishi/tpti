@@ -7,6 +7,32 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
+      {/* ヘッダー */}
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-lg font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500"
+          >
+            TPTI
+          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/types"
+              className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              16タイプ一覧
+            </Link>
+            <Link
+              href="/quiz"
+              className="text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-rose-500 px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity"
+            >
+              診断する
+            </Link>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-24">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-rose-50 to-orange-50 opacity-80" />
