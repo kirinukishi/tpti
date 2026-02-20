@@ -13,7 +13,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-family: var(--font-zen-maru), 'Zen Maru Gothic', sans-serif;
 }
 
 /* カスタムグラデーションや背景のアニメーションなどを追加可能 */

@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Noto_Sans_JP } from "next/font/google";
+import { Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
+const zenMaru = Zen_Maru_Gothic({
+  variable: "--font-zen-maru",
   subsets: ["latin"],
   weight: ["400", "700", "900"],
 });
@@ -39,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${notoSansJP.variable} antialiased`}
+        className={`${zenMaru.variable} antialiased`}
       >
         {children}
       </body>

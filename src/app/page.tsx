@@ -96,48 +96,37 @@ export default function Home() {
                   {q.text}
                 </p>
 
-                {/* 7-point scale: そう思う(green) ← → そう思わない(purple) */}
-                <div className="flex items-center justify-center gap-3 sm:gap-4">
-                  <span className="text-xs font-bold shrink-0" style={{ color: "#10b981" }}>
-                    そう思う
+                {/* 5-point scale */}
+                <div className="flex items-center justify-center gap-4 sm:gap-5">
+                  <span className="text-xs font-bold shrink-0" style={{ color: "#f472b6" }}>
+                    思わない
                   </span>
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    {[7, 6, 5, 4, 3, 2, 1].map((value) => {
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    {[1, 2, 3, 4, 5].map((value) => {
                       const isSelected = answers[q.id] === value;
-                      // サイズ: 両端大きく、中間小さく
-                      const sizes = { 7: 40, 6: 34, 5: 28, 4: 22, 3: 28, 2: 34, 1: 40 };
-                      const smSizes = { 7: 44, 6: 38, 5: 32, 4: 26, 3: 32, 2: 38, 1: 44 };
-                      // 色: 緑(そう思う) → グレー → 紫(思わない)
-                      const colors: Record<number, { border: string; fill: string; hover: string }> = {
-                        7: { border: "#10b981", fill: "#10b981", hover: "#d1fae5" },
-                        6: { border: "#34d399", fill: "#34d399", hover: "#d1fae5" },
-                        5: { border: "#6ee7b7", fill: "#6ee7b7", hover: "#ecfdf5" },
-                        4: { border: "#d1d5db", fill: "#9ca3af", hover: "#f3f4f6" },
-                        3: { border: "#c4b5fd", fill: "#c4b5fd", hover: "#ede9fe" },
-                        2: { border: "#a78bfa", fill: "#a78bfa", hover: "#ede9fe" },
-                        1: { border: "#8b5cf6", fill: "#8b5cf6", hover: "#ede9fe" },
-                      };
-                      const c = colors[value];
+                      const sizes: Record<number, number> = { 1: 44, 2: 38, 3: 32, 4: 38, 5: 44 };
+                      const s = sizes[value];
 
                       return (
                         <button
                           key={value}
                           onClick={() => handleSelect(q.id, value)}
                           style={{
-                            width: sizes[value as keyof typeof sizes],
-                            height: sizes[value as keyof typeof sizes],
-                            borderColor: isSelected ? c.fill : c.border,
-                            backgroundColor: isSelected ? c.fill : "transparent",
-                            transform: isSelected ? "scale(1.15)" : "scale(1)",
+                            width: s,
+                            height: s,
                           }}
-                          className="rounded-full border-[2.5px] transition-all duration-150 flex-shrink-0 hover:opacity-80"
+                          className={`rounded-full transition-all duration-200 flex-shrink-0 ${
+                            isSelected
+                              ? "bg-gray-700 shadow-md scale-110"
+                              : "bg-gray-200 hover:bg-gray-300"
+                          }`}
                           aria-label={`${value}点`}
                         />
                       );
                     })}
                   </div>
-                  <span className="text-xs font-bold shrink-0" style={{ color: "#8b5cf6" }}>
-                    思わない
+                  <span className="text-xs font-bold shrink-0" style={{ color: "#34d399" }}>
+                    そう思う
                   </span>
                 </div>
               </div>
