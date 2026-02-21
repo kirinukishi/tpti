@@ -178,7 +178,15 @@ export default async function ResultPage({ params }: ResultPageProps) {
                                         {spot.location}
                                     </span>
                                 </div>
-                                <p className="text-gray-600 text-sm leading-relaxed">{spot.description}</p>
+                                <p className="text-gray-600 text-sm leading-relaxed mb-3">{spot.description}</p>
+                                <a
+                                    href={`https://hb.afl.rakuten.co.jp/hgc/51348505.e59257a5.2b84543f.2e2baf0f/?pc=${encodeURIComponent(`https://travel.rakuten.co.jp/keyword/search?f_keyword=${spot.name}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-xs font-bold text-orange-500 hover:text-orange-600 transition-colors"
+                                >
+                                    この周辺の宿を探す &rarr;
+                                </a>
                             </div>
                         ))}
                     </div>
