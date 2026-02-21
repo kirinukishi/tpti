@@ -366,49 +366,61 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </div>
                 </div>
 
-                {/* 旅のお供に */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <a
-                        href="https://www.amazon.co.jp/b/ref=adbl_JP_as_0068?ie=UTF8&node=7471076051&tag=tpti-22"
-                        target="_blank"
-                        rel="nofollow sponsored noopener"
-                        className="group bg-gradient-to-br from-orange-50 to-amber-50 p-6 sm:p-8 rounded-[2rem] shadow-sm border border-orange-100 hover:shadow-lg hover:scale-[1.02] transition-all"
-                    >
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="px-2 py-0.5 bg-orange-500 text-white text-[10px] font-bold rounded">30日間無料</span>
-                            <span className="text-[10px] text-gray-300">PR</span>
+                {/* 旅のお供に - Audible */}
+                <a
+                    href="https://www.amazon.co.jp/b/ref=adbl_JP_as_0068?ie=UTF8&node=7471076051&tag=tpti-22"
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="group block bg-gradient-to-r from-orange-500 to-amber-500 p-8 sm:p-10 rounded-[2.5rem] shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-16 -mt-16" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-12 -mb-12" />
+                    <div className="relative z-10">
+                        <div className="flex items-center gap-2 mb-4">
+                            <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full">
+                                30日間無料体験
+                            </span>
+                            <span className="text-[10px] text-white/50">PR</span>
                         </div>
-                        <h3 className="text-lg font-black text-gray-900 mb-2">
-                            移動時間が、旅になる
+                        <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                            移動時間が、旅になる。
                         </h3>
-                        <p className="text-sm text-gray-500 leading-relaxed mb-5">
-                            飛行機や電車での移動中にオーディオブック。旅先の歴史や物語を聴いておくと、景色の見え方が変わる。
+                        <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
+                            飛行機や電車の中でオーディオブック。旅先の歴史や物語を聴いておくと、景色の見え方が変わる。
                         </p>
-                        <span className="inline-block px-5 py-2.5 bg-orange-500 text-white text-sm font-bold rounded-full group-hover:bg-orange-600 transition-colors shadow-sm">
-                            Audibleを無料で試す
+                        <span className="inline-block px-6 py-3 bg-white text-orange-600 text-sm font-black rounded-full shadow-md group-hover:shadow-lg transition-shadow">
+                            Audible 無料体験はこちら
                         </span>
-                    </a>
-                    <a
-                        href="https://www.amazon.co.jp/amazonprime?tag=tpti-22"
-                        target="_blank"
-                        rel="nofollow sponsored noopener"
-                        className="group bg-gradient-to-br from-blue-50 to-sky-50 p-6 sm:p-8 rounded-[2rem] shadow-sm border border-blue-100 hover:shadow-lg hover:scale-[1.02] transition-all"
-                    >
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="px-2 py-0.5 bg-blue-500 text-white text-[10px] font-bold rounded">30日間無料</span>
-                            <span className="text-[10px] text-gray-300">PR</span>
+                    </div>
+                </a>
+
+                {/* 旅のお供に - Prime */}
+                <a
+                    href="https://www.amazon.co.jp/amazonprime?tag=tpti-22"
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="group block bg-gradient-to-r from-blue-600 to-sky-500 p-8 sm:p-10 rounded-[2.5rem] shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-16 -mt-16" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-12 -mb-12" />
+                    <div className="relative z-10">
+                        <div className="flex items-center gap-2 mb-4">
+                            <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full">
+                                30日間無料体験
+                            </span>
+                            <span className="text-[10px] text-white/50">PR</span>
                         </div>
-                        <h3 className="text-lg font-black text-gray-900 mb-2">
-                            出発前日でも間に合う
+                        <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                            出発前日でも、間に合う。
                         </h3>
-                        <p className="text-sm text-gray-500 leading-relaxed mb-5">
-                            旅行グッズの準備、ギリギリになりがち？Prime会員ならお急ぎ便で翌日届く。映画やドラマも機内で見放題。
+                        <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
+                            Prime会員ならお急ぎ便で翌日届く。旅行グッズも映画も音楽も、これひとつ。
                         </p>
-                        <span className="inline-block px-5 py-2.5 bg-blue-500 text-white text-sm font-bold rounded-full group-hover:bg-blue-600 transition-colors shadow-sm">
-                            Primeを無料で試す
+                        <span className="inline-block px-6 py-3 bg-white text-blue-600 text-sm font-black rounded-full shadow-md group-hover:shadow-lg transition-shadow">
+                            Amazon Prime 無料体験はこちら
                         </span>
-                    </a>
-                </div>
+                    </div>
+                </a>
 
                 {/* 7. 仕事スタイル診断 Coming Soon */}
                 <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-slate-700 text-center relative overflow-hidden">
