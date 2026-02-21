@@ -12,7 +12,7 @@ export default function ShareButtons({ typeId, typeName, catchCopy }: ShareButto
   const [copied, setCopied] = useState(false);
 
   const url = `https://tpti.jp/result/${typeId.toLowerCase()}`;
-  const text = `あなたは${typeId}型【${typeName}】\n${catchCopy}\n#TPTI #旅行タイプ診断\n${url}`;
+  const text = `あなたは${typeId}型【${typeName}】\n${catchCopy}\n#TPTI #旅行タイプ診断 #性格診断 #MBTI\n${url}`;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);

@@ -83,7 +83,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
     }
 
     const typeColor = getTypeColor(typeData.color);
-    const shareText = `あなたは${typeId}型【${typeData.name}】\n${typeData.catchCopy}\n#TPTI #旅行タイプ診断\nhttps://tpti.jp/result/${typeId.toLowerCase()}`;
+    const shareText = `あなたは${typeId}型【${typeData.name}】\n${typeData.catchCopy}\n#TPTI #旅行タイプ診断 #性格診断 #MBTI\nhttps://tpti.jp/result/${typeId.toLowerCase()}`;
 
     return (
         <div className="min-h-screen bg-[#fafafa] pb-20">
