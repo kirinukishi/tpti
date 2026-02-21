@@ -37,7 +37,9 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
 
 async function loadTippiImage(typeId: string): Promise<string | null> {
     try {
-        const baseUrl = process.env.VERCEL_URL
+        const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+            ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+            : process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
             : "http://localhost:3000";
         const res = await fetch(`${baseUrl}/images/tippi-${typeId.toLowerCase()}.png`);
