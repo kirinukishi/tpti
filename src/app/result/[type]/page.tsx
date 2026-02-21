@@ -375,21 +375,19 @@ export default async function ResultPage({ params }: ResultPageProps) {
                 >
                     <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-16 -mt-16" />
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-12 -mb-12" />
-                    <div className="relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full">
-                                30日間無料体験
-                            </span>
-                            <span className="text-[10px] text-white/50">PR</span>
-                        </div>
-                        <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
-                            移動時間が、旅になる。
+                    <div className="relative z-10 text-center sm:text-left">
+                        <span className="text-[10px] text-white/40">PR</span>
+                        <p className="text-3xl sm:text-5xl font-black text-white mb-3 tracking-tight">
+                            30日間無料
+                        </p>
+                        <h3 className="text-lg sm:text-xl font-bold text-white/90 mb-4">
+                            Audible — 移動時間が、旅になる。
                         </h3>
-                        <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
+                        <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-lg">
                             飛行機や電車の中でオーディオブック。旅先の歴史や物語を聴いておくと、景色の見え方が変わる。
                         </p>
-                        <span className="inline-block px-6 py-3 bg-white text-orange-600 text-sm font-black rounded-full shadow-md group-hover:shadow-lg transition-shadow">
-                            Audible 無料体験はこちら
+                        <span className="inline-block px-8 py-3.5 bg-white text-orange-600 font-black rounded-full shadow-lg group-hover:shadow-xl transition-shadow text-base">
+                            無料で体験する
                         </span>
                     </div>
                 </a>
@@ -403,21 +401,19 @@ export default async function ResultPage({ params }: ResultPageProps) {
                 >
                     <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-16 -mt-16" />
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-12 -mb-12" />
-                    <div className="relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full">
-                                30日間無料体験
-                            </span>
-                            <span className="text-[10px] text-white/50">PR</span>
-                        </div>
-                        <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
-                            出発前日でも、間に合う。
-                        </h3>
-                        <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
-                            Prime会員ならお急ぎ便で翌日届く。旅行グッズも映画も音楽も、これひとつ。
+                    <div className="relative z-10 text-center sm:text-left">
+                        <span className="text-[10px] text-white/40">PR</span>
+                        <p className="text-3xl sm:text-5xl font-black text-white mb-3 tracking-tight">
+                            30日間無料
                         </p>
-                        <span className="inline-block px-6 py-3 bg-white text-blue-600 text-sm font-black rounded-full shadow-md group-hover:shadow-lg transition-shadow">
-                            Amazon Prime 無料体験はこちら
+                        <h3 className="text-lg sm:text-xl font-bold text-white/90 mb-4">
+                            Amazon Prime — 出発前日でも、間に合う。
+                        </h3>
+                        <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-lg">
+                            お急ぎ便で翌日届く。旅行グッズも映画も音楽も、これひとつ。
+                        </p>
+                        <span className="inline-block px-8 py-3.5 bg-white text-blue-600 font-black rounded-full shadow-lg group-hover:shadow-xl transition-shadow text-base">
+                            無料で体験する
                         </span>
                     </div>
                 </a>
