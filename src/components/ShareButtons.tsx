@@ -24,7 +24,7 @@ export default function ShareButtons({ typeId, typeName, catchCopy }: ShareButto
     <div className="flex items-center gap-3">
       {/* X (Twitter) */}
       <a
-        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`}
+        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center w-12 h-12 rounded-full transition-opacity hover:opacity-80"
