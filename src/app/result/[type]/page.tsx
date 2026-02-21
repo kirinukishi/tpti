@@ -280,7 +280,27 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </div>
                 </div>
 
-                {/* 7. もう一度診断する & タイプ一覧 */}
+                {/* 7. 仕事スタイル診断 Coming Soon */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-slate-700 text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/10 rounded-full -mr-20 -mt-20 blur-2xl" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-400/10 rounded-full -ml-16 -mb-16 blur-2xl" />
+                    <div className="relative z-10">
+                        <span className="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-bold rounded-full mb-4 tracking-wider">
+                            COMING SOON
+                        </span>
+                        <h2 className="text-2xl font-black text-white mb-3">
+                            仕事スタイル診断
+                        </h2>
+                        <p className="text-slate-400 text-sm leading-relaxed mb-2">
+                            旅のスタイルがわかったら、次は仕事のスタイル。
+                        </p>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            同じひよこで16タイプ、近日公開予定。
+                        </p>
+                    </div>
+                </div>
+
+                {/* 8. もう一度診断する & タイプ一覧 */}
                 <div className="flex flex-col items-center gap-4 pt-4 pb-8">
                     <Link
                         href="/quiz"
