@@ -179,16 +179,23 @@ export default async function ResultPage({ params }: ResultPageProps) {
                                     </span>
                                 </div>
                                 <p className="text-gray-600 text-sm leading-relaxed mb-3">{spot.description}</p>
-                                <a
-                                    href={`https://kw.travel.rakuten.co.jp/keyword/Search.do?f_query=${encodeURIComponent(spot.name)}&f_cd_application=affiliate&f_max=30&f_category=0&f_sort=0`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-xs font-bold text-orange-500 hover:text-orange-600 transition-colors"
-                                >
-                                    この周辺の宿を探す &rarr;
-                                </a>
                             </div>
                         ))}
+                    </div>
+
+                    {/* 楽天トラベル バナー */}
+                    <div className="mt-8 flex justify-center">
+                        <a
+                            href="https://hb.afl.rakuten.co.jp/hsc/5134a7a5.0fda9f10.2b84543f.2e2baf0f/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiIxMzMiLCJiYW4iOjIxODg2NTksImFtcCI6ZmFsc2V9"
+                            target="_blank"
+                            rel="nofollow sponsored noopener"
+                        >
+                            <img
+                                src="https://hbb.afl.rakuten.co.jp/hsb/5134a7a5.0fda9f10.2b84543f.2e2baf0f/?me_id=2100001&me_adv_id=2188659&t=pict"
+                                alt="楽天トラベル"
+                                className="rounded-lg"
+                            />
+                        </a>
                     </div>
                 </div>
 
