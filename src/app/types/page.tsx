@@ -132,7 +132,7 @@ export default function TypesPage() {
                           style={{ backgroundColor: typeBg }}
                         >
                           <img
-                            src="/images/tippi.jpg"
+                            src={`/images/tippi-${type.id.toLowerCase()}.png`}
                             alt={type.name}
                             className="w-12 h-12 rounded-xl object-cover"
                           />

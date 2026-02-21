@@ -16,7 +16,7 @@ export function TravelTypeCard({ type }: TravelTypeCardProps) {
         style={{ backgroundColor: bgColor, borderColor: getTypeColorWithOpacity(type.color, 0.2) }}
       >
         <img
-          src="/images/tippi.jpg"
+          src={`/images/tippi-${type.id.toLowerCase()}.png`}
           alt={type.name}
           className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
         />

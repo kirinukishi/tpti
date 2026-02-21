@@ -75,7 +75,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     {/* キャラクタープレースホルダー */}
                     <div className="w-48 h-48 mx-auto bg-white rounded-[3rem] shadow-2xl flex items-center justify-center mb-10 transform -rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden border-4 border-white">
                         <img
-                            src="/images/tippi.jpg"
+                            src={`/images/tippi-${typeId.toLowerCase()}.png`}
                             alt={typeData.name}
                             className="w-full h-full object-cover transform scale-110"
                         />
@@ -224,7 +224,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
                                             }}
                                         >
                                             <img
-                                                src="/images/tippi.jpg"
+                                                src={`/images/tippi-${partnerData.id.toLowerCase()}.png`}
                                                 alt={partnerData.name}
                                                 className="w-full h-full object-cover"
                                             />

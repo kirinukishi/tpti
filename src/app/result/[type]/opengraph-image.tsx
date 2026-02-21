@@ -35,15 +35,15 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
     return btoa(binary);
 }
 
-async function loadTippiImage(): Promise<string | null> {
+async function loadTippiImage(typeId: string): Promise<string | null> {
     try {
         const baseUrl = process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
             : "http://localhost:3000";
-        const res = await fetch(`${baseUrl}/images/tippi.jpg`);
+        const res = await fetch(`${baseUrl}/images/tippi-${typeId.toLowerCase()}.png`);
         if (!res.ok) return null;
         const buffer = await res.arrayBuffer();
-        return `data:image/jpeg;base64,${arrayBufferToBase64(buffer)}`;
+        return `data:image/png;base64,${arrayBufferToBase64(buffer)}`;
     } catch {
         return null;
     }
@@ -105,7 +105,7 @@ export default async function Image({
     const uniqueChars = [...new Set(allText)].join("");
 
     const [tippiSrc, fontData] = await Promise.all([
-        loadTippiImage(),
+        loadTippiImage(typeId),
         loadGoogleFont(uniqueChars),
     ]);
 
