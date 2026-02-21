@@ -180,7 +180,7 @@ export default async function ResultPage({ params }: ResultPageProps) {
                                 </div>
                                 <p className="text-gray-600 text-sm leading-relaxed mb-3">{spot.description}</p>
                                 <a
-                                    href={`https://search.travel.rakuten.co.jp/ds/hotellist/search?f_keyword=${encodeURIComponent(spot.name)}`}
+                                    href={`https://kw.travel.rakuten.co.jp/keyword/Search.do?f_query=${encodeURIComponent(spot.name)}&f_cd_application=affiliate&f_max=30&f_category=0&f_sort=0`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-1 text-xs font-bold text-orange-500 hover:text-orange-600 transition-colors"
