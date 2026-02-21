@@ -1,10 +1,41 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { travelTypes } from "../../../data/travelTypes";
 import { TravelTypeID } from "../../../data/types";
 import { getTypeColor, getTypeColorWithOpacity } from "../../../lib/colors";
 import ShareButtons from "../../../components/ShareButtons";
 import AxisBadge from "../../../components/AxisBadge";
+
+export async function generateMetadata({ params }: { params: Promise<{ type: string }> }): Promise<Metadata> {
+    const { type } = await params;
+    const typeId = type.toUpperCase() as TravelTypeID;
+    const typeData = travelTypes[typeId];
+
+    if (!typeData) {
+        return { title: "TPTI — 旅行タイプ性格診断" };
+    }
+
+    const title = `${typeId}型【${typeData.name}】| TPTI`;
+    const description = `${typeData.catchCopy} — TPTIで診断されたあなたの旅行タイプは「${typeData.name}」。`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `https://tpti.jp/result/${typeId.toLowerCase()}`,
+            type: "article",
+            siteName: "TPTI",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+        },
+    };
+}
 
 function getRecommendedItems(typeId: string) {
     const items = [];
