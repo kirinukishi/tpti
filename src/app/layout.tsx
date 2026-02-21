@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Zen_Maru_Gothic } from "next/font/google";
 import Script from "next/script";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 import "./globals.css";
 
 const zenMaru = Zen_Maru_Gothic({
@@ -33,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <head>
+      <body
+        className={`${zenMaru.variable} antialiased`}
+      >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JJ5B4YKETL"
           strategy="afterInteractive"
@@ -46,10 +49,7 @@ export default function RootLayout({
             gtag('config', 'G-JJ5B4YKETL');
           `}
         </Script>
-      </head>
-      <body
-        className={`${zenMaru.variable} antialiased`}
-      >
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
