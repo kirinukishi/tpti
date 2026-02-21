@@ -1,8 +1,10 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { travelTypes } from "../../../data/travelTypes";
 import { TravelTypeID } from "../../../data/types";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "TPTI 旅行タイプ診断結果";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -26,26 +28,11 @@ const colorMap: Record<string, string> = {
     "stone-400": "#a8a29e",
 };
 
-function arrayBufferToBase64(buffer: ArrayBuffer): string {
-    const bytes = new Uint8Array(buffer);
-    let binary = "";
-    for (let i = 0; i < bytes.byteLength; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return btoa(binary);
-}
-
-async function loadTippiImage(typeId: string): Promise<string | null> {
+function loadTippiImage(typeId: string): string | null {
     try {
-        const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-            ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-            : process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : "http://localhost:3000";
-        const res = await fetch(`${baseUrl}/images/tippi-${typeId.toLowerCase()}.png`);
-        if (!res.ok) return null;
-        const buffer = await res.arrayBuffer();
-        return `data:image/png;base64,${arrayBufferToBase64(buffer)}`;
+        const imagePath = join(process.cwd(), "public", "images", `tippi-${typeId.toLowerCase()}.png`);
+        const buffer = readFileSync(imagePath);
+        return `data:image/png;base64,${buffer.toString("base64")}`;
     } catch {
         return null;
     }
@@ -106,10 +93,8 @@ export default async function Image({
     const allText = `TPTI${typeId}${typeData.name}${typeData.catchCopy}旅行タイプ性格診断`;
     const uniqueChars = [...new Set(allText)].join("");
 
-    const [tippiSrc, fontData] = await Promise.all([
-        loadTippiImage(typeId),
-        loadGoogleFont(uniqueChars),
-    ]);
+    const tippiSrc = loadTippiImage(typeId);
+    const fontData = await loadGoogleFont(uniqueChars);
 
     const fontOptions = fontData
         ? [
