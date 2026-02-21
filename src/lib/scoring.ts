@@ -3,10 +3,10 @@ import { questions } from "../data/questions";
 
 // タイプ判定（5段階リッカート: 各軸7問 × 1~5 = 7~35, 中間21）
 export function determineTravelType(scores: ScoreSet): TravelTypeID {
-    const ec = scores.EC >= 25 ? "E" : "C";
-    const ps = scores.PS >= 25 ? "P" : "S";
-    const oi = scores.OI >= 25 ? "O" : "I";
-    const ar = scores.AR >= 25 ? "A" : "R";
+    const ec = scores.EC >= 21 ? "E" : "C";
+    const ps = scores.PS >= 21 ? "P" : "S";
+    const oi = scores.OI >= 21 ? "O" : "I";
+    const ar = scores.AR >= 21 ? "A" : "R";
 
     return `${ec}${ps}${oi}${ar}` as TravelTypeID;
 }
