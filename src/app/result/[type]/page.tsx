@@ -6,6 +6,38 @@ import { getTypeColor, getTypeColorWithOpacity } from "../../../lib/colors";
 import ShareButtons from "../../../components/ShareButtons";
 import AxisBadge from "../../../components/AxisBadge";
 
+function getRecommendedItems(typeId: string) {
+    const items = [];
+
+    // Axis 1: E(Explorer) / C(Classic)
+    if (typeId[0] === "E") {
+        items.push({ name: "モバイルバッテリー", desc: "冒険先でも安心の大容量", query: "モバイルバッテリー 大容量 旅行" });
+    } else {
+        items.push({ name: "スーツケース", desc: "王道スポットを快適に巡る相棒", query: "スーツケース 機内持ち込み 軽量" });
+    }
+
+    // Axis 2: P(Planner) / S(Spontaneous)
+    if (typeId[1] === "P") {
+        items.push({ name: "トラベルポーチセット", desc: "荷物を完璧に整理する計画派の必需品", query: "トラベルポーチ 圧縮 セット" });
+    } else {
+        items.push({ name: "折りたたみリュック", desc: "急な予定変更も身軽に対応", query: "折りたたみ リュック 軽量 旅行" });
+    }
+
+    // Axis 3+4: O/I × A/R
+    const combo = typeId[2] + typeId[3];
+    if (combo === "OA") {
+        items.push({ name: "自撮り棒・三脚", desc: "仲間との思い出を最高のアングルで", query: "自撮り棒 三脚 Bluetooth リモコン" });
+    } else if (combo === "OR") {
+        items.push({ name: "Bluetoothスピーカー", desc: "みんなで過ごすリラックスタイムに", query: "Bluetooth スピーカー 防水 アウトドア" });
+    } else if (combo === "IA") {
+        items.push({ name: "アクションカメラ", desc: "冒険を臨場感たっぷりに記録", query: "アクションカメラ 防水 4K" });
+    } else {
+        items.push({ name: "ノイキャンイヤホン", desc: "自分だけの心地よい空間を", query: "ノイズキャンセリング イヤホン ワイヤレス" });
+    }
+
+    return items;
+}
+
 interface ResultPageProps {
     params: Promise<{ type: string }>;
 }
@@ -199,6 +231,35 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </div>
                 </div>
 
+                {/* 旅の準備リスト */}
+                <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
+                    <h2 className="text-2xl font-black mb-2 flex items-center gap-2">
+                        <span className="w-2 h-8 rounded-full" style={{ backgroundColor: typeColor }} />
+                        旅の準備リスト
+                    </h2>
+                    <p className="text-sm text-gray-400 mb-6 ml-5">あなたのタイプにぴったりの旅グッズ</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {getRecommendedItems(typeId).map((item, i) => (
+                            <a
+                                key={i}
+                                href={`https://www.amazon.co.jp/s?k=${encodeURIComponent(item.query)}&tag=tpti-22`}
+                                target="_blank"
+                                rel="nofollow sponsored noopener"
+                                className="group p-5 rounded-2xl bg-gray-50 hover:bg-amber-50 hover:shadow-md transition-all border border-transparent hover:border-amber-100 text-center"
+                            >
+                                <h3 className="font-black text-gray-900 mb-1 group-hover:text-amber-700 transition-colors">
+                                    {item.name}
+                                </h3>
+                                <p className="text-xs text-gray-500 leading-relaxed mb-3">{item.desc}</p>
+                                <span className="text-xs font-bold text-amber-600 group-hover:underline">
+                                    Amazonで探す &rarr;
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                    <p className="text-[10px] text-gray-300 mt-4 text-right">PR</p>
+                </div>
+
                 {/* 5. 相性の良いタイプ x 3 */}
                 <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
                     <h2 className="text-2xl font-black mb-8 flex items-center gap-2">
@@ -295,6 +356,46 @@ export default async function ResultPage({ params }: ResultPageProps) {
                     </div>
                 </div>
 
+                {/* 旅のお供に */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <a
+                        href="https://www.amazon.co.jp/b/ref=adbl_JP_as_0068?ie=UTF8&node=7471076051&tag=tpti-22"
+                        target="_blank"
+                        rel="nofollow sponsored noopener"
+                        className="group bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-lg hover:border-orange-100 transition-all"
+                    >
+                        <p className="text-xs font-bold text-orange-400 mb-3 tracking-wider">TRAVEL COMPANION</p>
+                        <h3 className="text-lg font-black text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                            Audible
+                        </h3>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                            移動時間が、旅の一部になる。飛行機や電車の中でオーディオブックを聴けば、旅先の歴史や文化がもっと身近に。
+                        </p>
+                        <span className="text-xs font-bold text-orange-500 group-hover:underline">
+                            無料体験を見る &rarr;
+                        </span>
+                        <p className="text-[10px] text-gray-300 mt-3">PR</p>
+                    </a>
+                    <a
+                        href="https://www.amazon.co.jp/amazonprime?tag=tpti-22"
+                        target="_blank"
+                        rel="nofollow sponsored noopener"
+                        className="group bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-lg hover:border-blue-100 transition-all"
+                    >
+                        <p className="text-xs font-bold text-blue-400 mb-3 tracking-wider">TRAVEL PREP</p>
+                        <h3 className="text-lg font-black text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                            Amazon Prime
+                        </h3>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                            旅行グッズの準備、ギリギリになりがち？Prime会員なら翌日届くから、出発前日の「あ、忘れてた」も安心。
+                        </p>
+                        <span className="text-xs font-bold text-blue-500 group-hover:underline">
+                            Prime を見る &rarr;
+                        </span>
+                        <p className="text-[10px] text-gray-300 mt-3">PR</p>
+                    </a>
+                </div>
+
                 {/* 7. 仕事スタイル診断 Coming Soon */}
                 <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-slate-700 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/10 rounded-full -mr-20 -mt-20 blur-2xl" />
@@ -332,6 +433,11 @@ export default async function ResultPage({ params }: ResultPageProps) {
                         全16タイプ一覧を見る &rarr;
                     </Link>
                 </div>
+
+                {/* アフィリエイト開示 */}
+                <p className="text-[10px] text-gray-300 text-center leading-relaxed">
+                    ※ 本ページはプロモーションを含みます。Amazonのアソシエイトとして、TPTIは適格販売により収入を得ています。
+                </p>
             </div>
         </div>
     );
