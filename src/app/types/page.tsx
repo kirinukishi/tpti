@@ -5,7 +5,7 @@ import { travelTypes } from "../../data/travelTypes";
 import { travelTypesEn } from "../../data/travelTypes.en";
 import { TravelTypeID } from "../../data/types";
 import { getTypeColor, getTypeColorWithOpacity } from "../../lib/colors";
-import { useLocale } from "../../i18n/LocaleProvider";
+import { useLocale, useSetLocale } from "../../i18n/LocaleProvider";
 import { getDictionary } from "../../i18n";
 
 const groupConfigs = [
@@ -37,6 +37,7 @@ const groupConfigs = [
 
 export default function TypesPage() {
   const locale = useLocale();
+  const setLocale = useSetLocale();
   const t = getDictionary(locale);
   const types = locale === "ja" ? travelTypes : travelTypesEn;
 
@@ -51,6 +52,12 @@ export default function TypesPage() {
           >
             TPTI
           </Link>
+          <button
+            onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
+            className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+          >
+            {locale === "ja" ? "EN" : "日本語"}
+          </button>
         </div>
       </header>
 

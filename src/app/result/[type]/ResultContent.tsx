@@ -8,7 +8,7 @@ import { getTypeColor, getTypeColorWithOpacity } from "../../../lib/colors";
 import ShareButtons from "../../../components/ShareButtons";
 import AxisBadge from "../../../components/AxisBadge";
 import AffiliateSection from "../../../components/AffiliateSection";
-import { useLocale } from "../../../i18n/LocaleProvider";
+import { useLocale, useSetLocale } from "../../../i18n/LocaleProvider";
 import { getDictionary } from "../../../i18n";
 
 function getRecommendedItems(typeId: string, locale: "ja" | "en") {
@@ -42,6 +42,7 @@ function getRecommendedItems(typeId: string, locale: "ja" | "en") {
 
 export default function ResultContent({ typeId }: { typeId: TravelTypeID }) {
     const locale = useLocale();
+    const setLocale = useSetLocale();
     const t = getDictionary(locale);
     const types = locale === "ja" ? travelTypes : travelTypesEn;
     const typeData = types[typeId];
@@ -67,12 +68,20 @@ export default function ResultContent({ typeId }: { typeId: TravelTypeID }) {
                     >
                         TPTI
                     </Link>
-                    <Link
-                        href="/quiz"
-                        className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
-                    >
-                        {t.nav.retakeQuiz}
-                    </Link>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
+                            className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+                        >
+                            {locale === "ja" ? "EN" : "日本語"}
+                        </button>
+                        <Link
+                            href="/quiz"
+                            className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+                        >
+                            {t.nav.retakeQuiz}
+                        </Link>
+                    </div>
                 </div>
             </header>
 

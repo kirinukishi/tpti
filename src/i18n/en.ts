@@ -1,7 +1,7 @@
 export const en = {
   common: {
     siteName: "TPTI",
-    tagline: "Tipti",
+    tagline: "What kind of traveler are you?",
     subtitle: "Travel Personality Type Indicator",
     copyright: "\u00a9 2026 TPTI",
   },

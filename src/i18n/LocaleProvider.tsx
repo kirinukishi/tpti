@@ -4,10 +4,22 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 
 export type Locale = "ja" | "en";
 
-const LocaleContext = createContext<Locale>("ja");
+interface LocaleContextValue {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+}
+
+const LocaleContext = createContext<LocaleContextValue>({
+  locale: "ja",
+  setLocale: () => {},
+});
 
 export function useLocale(): Locale {
-  return useContext(LocaleContext);
+  return useContext(LocaleContext).locale;
+}
+
+export function useSetLocale(): (locale: Locale) => void {
+  return useContext(LocaleContext).setLocale;
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
@@ -20,7 +32,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <LocaleContext.Provider value={locale}>
+    <LocaleContext.Provider value={{ locale, setLocale }}>
       {children}
     </LocaleContext.Provider>
   );

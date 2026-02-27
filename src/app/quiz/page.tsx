@@ -6,12 +6,13 @@ import Link from "next/link";
 import { questions } from "../../data/questions";
 import { questionsEn } from "../../data/questions.en";
 import { calculateScores, determineTravelType } from "../../lib/scoring";
-import { useLocale } from "../../i18n/LocaleProvider";
+import { useLocale, useSetLocale } from "../../i18n/LocaleProvider";
 import { getDictionary } from "../../i18n";
 
 export default function QuizPage() {
   const router = useRouter();
   const locale = useLocale();
+  const setLocale = useSetLocale();
   const t = getDictionary(locale);
   const activeQuestions = locale === "ja" ? questions : questionsEn;
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -50,12 +51,20 @@ export default function QuizPage() {
           >
             TPTI
           </Link>
-          <Link
-            href="/types"
-            className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
-          >
-            {t.nav.viewAllTypes}
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
+              className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              {locale === "ja" ? "EN" : "日本語"}
+            </button>
+            <Link
+              href="/types"
+              className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              {t.nav.viewAllTypes}
+            </Link>
+          </div>
         </div>
       </header>
 

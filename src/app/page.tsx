@@ -4,11 +4,12 @@ import Link from "next/link";
 import { TravelTypeCard } from "../components/TravelTypeCard";
 import { travelTypes } from "../data/travelTypes";
 import { travelTypesEn } from "../data/travelTypes.en";
-import { useLocale } from "../i18n/LocaleProvider";
+import { useLocale, useSetLocale } from "../i18n/LocaleProvider";
 import { getDictionary } from "../i18n";
 
 export default function Home() {
   const locale = useLocale();
+  const setLocale = useSetLocale();
   const t = getDictionary(locale);
   const types = locale === "ja" ? travelTypes : travelTypesEn;
   const featuredTypes = [types.EPOA, types.ESOR, types.CPIR];
@@ -25,6 +26,12 @@ export default function Home() {
             TPTI
           </Link>
           <div className="flex items-center gap-4">
+            <button
+              onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
+              className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              {locale === "ja" ? "EN" : "日本語"}
+            </button>
             <Link
               href="/types"
               className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
