@@ -60,9 +60,17 @@ export default function Home() {
           <div className="text-sm sm:text-base font-bold text-gray-400 tracking-widest mb-2">
             {t.common.tagline}
           </div>
-          <div className="text-xs sm:text-sm font-medium text-gray-400 tracking-wider uppercase mb-10">
+          <div className="text-xs sm:text-sm font-medium text-gray-400 tracking-wider uppercase mb-6">
             {t.common.subtitle}
           </div>
+
+          <button
+            onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
+            className="inline-flex items-center gap-2 px-5 py-2 mb-10 rounded-full border-2 border-gray-300 bg-white/70 backdrop-blur-sm text-sm font-bold text-gray-600 hover:border-orange-400 hover:text-orange-500 transition-all shadow-sm"
+          >
+            <span className="text-base">🌐</span>
+            {locale === "ja" ? "English Version" : "日本語版はこちら"}
+          </button>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-gray-900 mb-6 leading-tight">
             {t.home.heroTitle1}<br />
