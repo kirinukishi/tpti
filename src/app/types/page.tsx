@@ -54,9 +54,9 @@ export default function TypesPage() {
           </Link>
           <button
             onClick={() => setLocale(locale === "ja" ? "en" : "ja")}
-            className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
+            className="text-xs font-bold border border-gray-300 text-gray-500 hover:border-orange-400 hover:text-orange-500 px-3 py-1 rounded-full transition-colors"
           >
-            {locale === "ja" ? "EN" : "日本語"}
+            {locale === "ja" ? "🌐 EN" : "🌐 日本語"}
           </button>
         </div>
       </header>
