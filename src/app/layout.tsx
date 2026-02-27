@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Zen_Maru_Gothic } from "next/font/google";
 import Script from "next/script";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import { LocaleProvider } from "../i18n/LocaleProvider";
 import "./globals.css";
 
 const zenMaru = Zen_Maru_Gothic({
@@ -50,7 +51,9 @@ export default function RootLayout({
           `}
         </Script>
         <GoogleAnalytics />
-        {children}
+        <LocaleProvider>
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

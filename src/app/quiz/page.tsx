@@ -4,10 +4,16 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { questions } from "../../data/questions";
+import { questionsEn } from "../../data/questions.en";
 import { calculateScores, determineTravelType } from "../../lib/scoring";
+import { useLocale } from "../../i18n/LocaleProvider";
+import { getDictionary } from "../../i18n";
 
 export default function QuizPage() {
   const router = useRouter();
+  const locale = useLocale();
+  const t = getDictionary(locale);
+  const activeQuestions = locale === "ja" ? questions : questionsEn;
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showError, setShowError] = useState(false);
 
@@ -17,7 +23,7 @@ export default function QuizPage() {
   };
 
   const handleSubmit = () => {
-    const unanswered = questions.filter((q) => !(q.id in answers));
+    const unanswered = activeQuestions.filter((q) => !(q.id in answers));
     if (unanswered.length > 0) {
       setShowError(true);
       const el = document.getElementById(`q-${unanswered[0].id}`);
@@ -31,7 +37,7 @@ export default function QuizPage() {
   };
 
   const answeredCount = Object.keys(answers).length;
-  const totalCount = questions.length;
+  const totalCount = activeQuestions.length;
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
@@ -48,7 +54,7 @@ export default function QuizPage() {
             href="/types"
             className="text-xs font-bold text-gray-400 hover:text-orange-500 transition-colors"
           >
-            16タイプをすべて見る
+            {t.nav.viewAllTypes}
           </Link>
         </div>
       </header>
@@ -66,16 +72,16 @@ export default function QuizPage() {
         {/* Minimal intro */}
         <div className="text-center mb-10">
           <h1 className="text-xl font-black text-gray-900 mb-1">
-            旅行タイプ性格診断
+            {t.quiz.title}
           </h1>
           <p className="text-sm text-gray-400">
-            {totalCount}問 / 直感で答えてください
+            {t.quiz.meta.replace("{count}", String(totalCount))}
           </p>
         </div>
 
         {/* Questions */}
         <div className="space-y-8">
-          {questions.map((q, index) => {
+          {activeQuestions.map((q, index) => {
             const isAnswered = q.id in answers;
             const isUnansweredError = showError && !isAnswered;
 
@@ -98,7 +104,7 @@ export default function QuizPage() {
                 {/* 5-point scale */}
                 <div className="flex items-center justify-center gap-4 sm:gap-5">
                   <span className="text-xs font-bold shrink-0" style={{ color: "#f472b6" }}>
-                    思わない
+                    {t.quiz.disagree}
                   </span>
                   <div className="flex items-center gap-3 sm:gap-4">
                     {[1, 2, 3, 4, 5].map((value) => {
@@ -127,13 +133,13 @@ export default function QuizPage() {
                               ? "shadow-md scale-110"
                               : "bg-gray-200 hover:bg-gray-300"
                           }`}
-                          aria-label={`${value}点`}
+                          aria-label={`${value} / 5`}
                         />
                       );
                     })}
                   </div>
                   <span className="text-xs font-bold shrink-0" style={{ color: "#34d399" }}>
-                    そう思う
+                    {t.quiz.agree}
                   </span>
                 </div>
               </div>
@@ -145,7 +151,7 @@ export default function QuizPage() {
         {showError && (
           <div className="mt-6 text-center">
             <p className="text-sm text-rose-500 font-bold">
-              未回答の質問があります（赤枠の質問に回答してください）
+              {t.quiz.errorUnanswered}
             </p>
           </div>
         )}
@@ -165,7 +171,7 @@ export default function QuizPage() {
                 : "bg-gray-200 text-gray-400"
             }`}
           >
-            診断結果を見る
+            {t.quiz.submit}
           </button>
         </div>
       </div>
